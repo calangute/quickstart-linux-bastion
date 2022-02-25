@@ -13,6 +13,7 @@ Metadata:
           - VPCID
           - PublicSubnet1ID
           - PublicSubnet2ID
+          - PublicSubnet3ID
           - RemoteAccessCIDR
       - Label:
           default: IAM configuration
@@ -84,6 +85,8 @@ Metadata:
         default: Public subnet 1 ID
       PublicSubnet2ID:
         default: Public subnet 2 ID
+      PublicSubnet3ID:
+        default: Public subnet 3 ID
       QSS3BucketName:
         default: Quick Start S3 bucket name
       QSS3KeyPrefix:
@@ -192,6 +195,9 @@ Parameters:
     Type: 'AWS::EC2::Subnet::Id'
   PublicSubnet2ID:
     Description: ID of the public subnet 2 that you want to provision the second bastion into (e.g., subnet-e3246d8e).
+    Type: 'AWS::EC2::Subnet::Id'
+  PublicSubnet3ID:
+    Description: ID of the public subnet 3 that you want to provision the second bastion into (e.g., subnet-e3246d8e).
     Type: 'AWS::EC2::Subnet::Id'
   QSS3BucketName:
     AllowedPattern: ^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$
@@ -604,6 +610,7 @@ Resources:
       VPCZoneIdentifier:
         - !Ref PublicSubnet1ID
         - !Ref PublicSubnet2ID
+        - !Ref PublicSubnet3ID
       MinSize: !Ref NumBastionHosts
       MaxSize: !Ref NumBastionHosts
       Cooldown: '900'
